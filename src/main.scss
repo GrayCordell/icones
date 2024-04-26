@@ -1,0 +1,370 @@
+/* this contains the default theme, these are optional styles */
+
+/**
+ * Description: This file contains all the global styles for the application.
+  All classes and variables defined here will be available globally.
+  This setups some defaults for the css. It also sets up the color scheme for the app.
+
+ * Notes:
+   - Some things should likely be taken out. Most css should be in the components.(scoped)
+   - "--whatever" are css variables. I use them only for globals. There is no reason I do this other than I like it.
+   - Color names are likely dumb throughout the app.
+ */
+
+@font-face {
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  unicode-range: U+000-5FF;
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+/* apply scrollbars to everything */
+* {
+  /*chrome*/
+  &::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--primary-darker);
+    border-radius: 55px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 55px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-darker);
+  }
+
+  /* Firefox-specific styles */
+  @supports (scrollbar-color: red blue) {
+    /* hack to tell if its firefox based */
+    html {
+      scrollbar-width: var(
+                      --scrollbar-width
+      ); /* Adjust the width of the scrollbar */
+      scrollbar-color: var(--accent) var(--primary-darker); /* Adjust thumb and track colors */
+    }
+  }
+  /*firefox*/
+  //scrollbar-width: thin;
+  //scrollbar-color: var(--accent) var(--primary-darker);
+}
+
+body {
+  /*GLOBAL VARIABLES*/
+  --primary: white;
+  --primary-darker: #f2f2f2;
+  --primary-darker-grey: lightgray;
+  --grey: grey;
+  --secondary: black;
+  --secondary-lighter: rgba(0, 0, 0, 0.7);
+  --font-color: black;
+
+  --highlight: #deb887;
+  --scrollbar-width: 6px;
+
+  /*//--accent: #6534e2;
+  //--accent-hover: #3dc2ff;
+  //--accent-darker:  rgb(63, 1, 219);
+  //--accent-dark-lighter:  rgba(63, 1, 219, 0.28);*/
+
+  /*//CANVAS*/
+  --canvas-background-color: var(--primary);
+  --canvas-pattern-color: #b9b9b9;
+
+  /*--accent: #7EC8E3; */
+  --accent: #416ebd;
+  --accent-hover: #3dc2ff;
+  --accent-hover-darker: #375a9c;
+  --accent-darker: #416ebd;
+  --accent-dark-lighter: rgba(63, 1, 219, 0.28);
+  --accent-dark-lighterer: rgba(63, 1, 219, 0.1); /*//TODO idk fix later*/
+
+  /*//ConversationPane*/
+  --betty: rgba(169, 102, 166, 0.87); /* // later. #C3AED6;*/
+
+  --mentor: cornflowerblue; /* //later. #6AAFAE;*/
+  --mentor-text: #2a82bd;
+  --show-hide-button-color: orange;
+  --agent-border-1: 2px solid var(--secondary);
+  --agent-border-2: 1px solid var(--secondary);
+  --agent-start-background-color: var(--accent);
+  --conversation-pane-background-color: var(--primary);
+  --message-data-text-color: var(--secondary);
+
+  /*messages*/
+  --agent-message-border-bottom-color: #dbdbdb;
+  --user-message-background-color: #f2f2f2;
+  --user-text-background-color: var(--accent);
+  --message-text-shadow: 0 2px 3px rgb(0 0 0 / 26%);
+  --message-data-text-shadow: 0 2px 3px rgb(0 0 0 / 10%);
+  --conversation-divider-color: rgba(0, 0, 0, 0.6705882353);
+  --message-text-color: var(--primary);
+
+  /*picture-box*/
+  --agent-picture-box-icon-color: orange;
+  --active-image-and-caption-color: var(--accent);
+  --agent-picture-box-border: 2px solid var(--primary);
+  --agent-picture-box-text-color: var(--primary);
+
+  /*notes*/
+  --notes-color: #ffb93a;
+
+  /*font stuff just in case*/
+  --font-family: 'Atkinson Hyperlegible', sans-serif;
+  --fa-font-path: '/assets/fonts';
+  --fa-font-display: auto;
+  --fa-font-weight: 400;
+  --fa-font-style: normal;
+
+  /*disable select text by default*/
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  color: var(--secondary);
+  background-color: var(--primary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+body[color-scheme='dark'] {
+  /*//--primary: black;*/
+  /*//--secondary: white;*/
+  /*//--font-color: white;*/
+  /*//svg {*/
+  /*//  fill: red;*/
+  /*//}*/
+}
+body[color-scheme='light'] {
+  /*//--primary: white;*/
+  /*//--secondary: black;*/
+  /*//--font-color: black;*/
+  /*//--accent: #3dc2ff;*/
+  /*//svg {*/
+  /*//  fill: red;*/
+  /*//}*/
+  /*////default icon colors*/
+  /*//ion-icon {*/
+  /*//  color: white;*/
+  /*//}*/
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+:root {
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+
+/* Vue flow, TODO move */
+.vue-flow__edge-text {
+  font-size: 20px !important;
+  background-color: var(--primary) !important;
+}
+
+ion-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  position: relative;
+  top: 0.1rem;
+}
+a {
+  &:hover {
+    background-color: var(--primary-darker-grey);
+    border-color: var(--primary-darker-grey);
+    cursor: pointer;
+  }
+}
+
+VueResizable {
+  position: absolute;
+}
+.resizable-component {
+  position: absolute;
+}
+.resizable-r {
+  position: absolute !important;
+  min-width: 15px;
+  cursor: col-resize !important;
+  &:before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0;
+    right: -5px;
+    width: 10px;
+    height: 100%;
+    z-index: 1;
+  }
+}
+
+.splitpanes--vertical > .splitpanes__splitter {
+  min-width: 4px !important;
+  cursor: col-resize;
+}
+.splitpanes__splitter {
+  position: relative;
+  background: var(--accent);
+}
+
+.splitpanes__splitter:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.2%;
+  transition: opacity 0.3s;
+  background-color: var(--accent);
+  opacity: 0;
+  z-index: 1;
+  border-radius: 0;
+  outline: 2px solid var(--secondary);
+}
+.splitpanes--vertical > .splitpanes__splitter:before {
+  left: -4px;
+  right: -4px;
+  height: 100%;
+}
+.splitpanes__splitter:hover:before {
+  opacity: 1;
+}
+
+.general-btn {
+  background-color: var(--primary);
+  border: 1px solid var(--grey);
+  border-radius: 7px;
+  padding: 10px 15px;
+  margin: 5px;
+
+  &:hover {
+    background-color: var(--primary-darker-grey);
+    border-color: var(--primary-darker-grey);
+    cursor: pointer;
+  }
+}
+select {
+  display: flex;
+  background-color: var(--primary);
+  border-width: 1px;
+  border-color: var(--primary-darker-grey);
+  border-style: solid;
+  border-radius: 7px;
+  padding: 10px 15px;
+  margin: 5px;
+}
+input {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 2px;
+  border-width: 1px;
+  border-color: var(--primary-darker-grey);
+  border-style: solid;
+}
+figure {
+  margin: 2px;
+  figcaption {
+    font-size: 13px;
+    text-transform: capitalize;
+  }
+}
+
+/*Teachers guide and ResourceLibrary*/ /*TODO move*/
+.resourceViewerFrame {
+  display: flex;
+  align-content: flex-start;
+  flex-direction: row;
+  border: 1px solid var(--secondary);
+  overflow: hidden;
+  height: 100%;
+  min-height: 100%;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  background: var(--accent-dark-lighterer);
+  padding: 5px;
+}
+.modal-container {
+  z-index: 1000;
+}
+img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 1000px;
+}
+
+$betty: var(--betty);
+$mentor: var(--mentor);
+$mentor-text: var(--mentor-text);
+$text-color: var(--message-text-color);
+$text-shadow_1: 0 2px 3px rgb(0 0 0 / 40%);
+$user-text-background-color: var(--user-text-background-color);
+
+.message.message-agent {
+  color: $text-color;
+  text-shadow: $text-shadow_1;
+  margin-left: 10px;
+  display: grid;
+  grid-template-columns: 40px auto;
+  grid-template-rows: auto auto;
+  grid-template-areas: 'icon text' 'data data';
+
+  .mentor-agent-text {
+    background-color: $mentor-text;
+    align-self: flex-start;
+    margin-top: 5px;
+    margin-left: 30px;
+    border-bottom-right-radius: 10px;
+  }
+  .mentor-agent-text::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    z-index: 1;
+    border-style: solid;
+    border-width: 0 0 37px 27px;
+    border-color: transparent transparent $mentor-text transparent;
+    top: 78%;
+    left: -27px;
+    margin-top: -18.5px;
+  }
+  .teachable-agent-text {
+    background-color: $betty;
+    align-self: flex-start;
+    margin-top: 5px;
+    margin-left: 30px;
+    border-bottom-right-radius: 10px;
+  }
+}
+.message.message-user {
+  color: $text-color;
+  text-shadow: $text-shadow_1;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  align-self: flex-end;
+  margin-right: 12px;
+
+  .user-text {
+    background-color: $user-text-background-color;
+    border-bottom-left-radius: 10px;
+  }
+}

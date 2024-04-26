@@ -1,15 +1,15 @@
 <template>
   <div class="p-6 w-120 help-page">
-    <p class="mb-2 opacity-75">
-      How to use the icon?
-    </p>
+    <!--    <p class="mb-2 opacity-75">
+      &lt;!&ndash;      How to use the icon? &ndash;&gt;
+    </p> -->
 
-    <h2 class="bold text-lg mb-1">
+    <!--    <h2 class="bold text-lg mb-1">
       Copy per Icon
-    </h2>
-    <p>
+    </h2> -->
+    <!--    <p>
       You can copy the icon as SVG to paste in almost any editor (Figma, Sketch, Illustrator, etc.), or copy as component to use in your web apps.
-    </p>
+    </p> -->
 
     <h2 class="bold text-lg mt-5 mb-1">
       Iconify Runtime

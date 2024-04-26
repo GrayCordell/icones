@@ -1,8 +1,7 @@
 <script setup lang='ts'>
-import { getIconSnippet, toComponentName } from '../utils/icons'
+import { getIconSnippet } from '../utils/icons'
 import { collections } from '../data'
-import { activeMode, copyPreviewColor, getTransformedId, inBag, preferredCase, previewColor, pushRecentIcon, showCaseSelect, showHelp, toggleBag } from '../store'
-import { Download } from '../utils/pack'
+import { copyPreviewColor, getTransformedId, preferredCase, previewColor, pushRecentIcon, showCaseSelect } from '../store'
 import { dataUrlToBlob } from '../utils/dataUrlToBlob'
 import { idCases } from '../utils/case'
 
@@ -81,7 +80,7 @@ async function copy(type: string) {
   )
 }
 
-async function download(type: string) {
+/* async function download(type: string) {
   pushRecentIcon(props.icon)
   const text = await getIconSnippet(props.icon, type, false, color.value)
   if (!text)
@@ -92,9 +91,9 @@ async function download(type: string) {
     ? dataUrlToBlob(text)
     : new Blob([text], { type: 'text/plain;charset=utf-8' })
   Download(blob, name)
-}
+} */
 
-function toggleSelectingMode() {
+/* function toggleSelectingMode() {
   switch (activeMode.value) {
     case 'select':
       activeMode.value = 'normal'
@@ -104,7 +103,7 @@ function toggleSelectingMode() {
       emit('close')
       break
   }
-}
+} */
 
 const collection = computed(() => {
   const id = props.icon.split(':')[0]
@@ -113,7 +112,7 @@ const collection = computed(() => {
 </script>
 
 <template>
-  <div class="p-2 flex flex-col flex-wrap md:flex-row md:text-left relative">
+  <div class="p-2 flex flex-col flex-wrap md:flex-row md:text-left relative ">
     <IconButton class="absolute top-0 right-0 p-3 text-2xl flex-none leading-none" icon="carbon:close" @click="$emit('close')" />
     <div :style="{ color: previewColor }">
       <ColorPicker v-model:value="previewColor" class="inline-block">
@@ -121,15 +120,17 @@ const collection = computed(() => {
       </ColorPicker>
     </div>
     <div class="px-6 py-2 mb-2 md:px-2 md:py-4">
-      <button
+      <!--      <button
         class="text-gray-500 hover:text-primary text-sm dark:text-dark-500 !outline-none"
         @click="showHelp = !showHelp"
       >
         How to use the icon?
-      </button>
-      <div class="flex text-gray-700 relative font-mono dark:text-dark-900">
+      </button> -->
+      <div class="flex text-gray-700 relative font-mono dark:text-dark-900 my-bigger-class">
         {{ transformedId }}
+        <!--
         <IconButton icon="carbon:copy" class="ml-2" @click="copy('id')" />
+-->
         <IconButton icon="carbon:chevron-up" class="ml-2" @click="showCaseSelect = !showCaseSelect" />
         <div class="flex-auto" />
         <div
@@ -173,25 +174,27 @@ const collection = computed(() => {
       </p>
 
       <div>
-        <button
-          class="
+        <!--        <button
+          &lt;!&ndash; class="
             inline-block leading-1em border border-base my-2 mr-2 font-sans pl-2 pr-3 py-1 rounded-full text-sm cursor-pointer
             hover:bg-gray-50 dark:hover:bg-dark-200
           "
           :class="inBag(icon) ? 'text-primary' : 'text-gray-500'"
           @click="toggleBag(icon)"
         >
-          <template v-if="inBag(icon)">
+          &ndash;&gt;
+          &lt;!&ndash;          <template v-if="inBag(icon)">
             <Icon class="inline-block text-lg align-middle" icon="carbon:shopping-bag" />
             <span class="inline-block align-middle ml1">in bag</span>
           </template>
           <template v-else>
             <Icon class="inline-block text-lg align-middle" icon="carbon:add" />
-            <span class="inline-block align-middle ml1">add to bag</span>
-          </template>
-        </button>
+            &lt;!&ndash; MYEDIT
+            <span class="inline-block align-middle ml1">add to bag</span> &ndash;&gt;
+          </template> &ndash;&gt;
+        </button> -->
 
-        <button
+        <!--        <button
           v-if="inBag(icon)"
           class="
             inline-block leading-1em border border-base my-2 mr-2 font-sans pl-2 pr-3 py-1 rounded-full text-sm cursor-pointer
@@ -201,8 +204,8 @@ const collection = computed(() => {
           @click="toggleSelectingMode"
         >
           <Icon class="inline-block text-lg align-middle" icon="carbon:list-checked" />
-          <span class="inline-block align-middle ml1">multiple select</span>
-        </button>
+          &lt;!&ndash;          <span class="inline-block align-middle ml1">multiple select</span> &ndash;&gt;
+        </button> -->
 
         <button
           class="
@@ -218,7 +221,7 @@ const collection = computed(() => {
         </button>
       </div>
 
-      <div class="flex flex-wrap mt-2">
+      <!--      <div class="flex flex-wrap mt-2">
         <div class="mr-4">
           <div class="my-1 text-gray-500 text-sm">
             Snippets
@@ -341,9 +344,17 @@ const collection = computed(() => {
             UnoCSS
           </a>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
+
+<style lang="postcss">
+.my-bigger-class {
+  width: 100%;
+  font-size: 1.5rem;
+  height: 2.5rem;
+}
+</style>
 ../utils/copyPng
 ../utils/svgToPng

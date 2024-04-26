@@ -5,6 +5,7 @@ import App from './App.vue'
 import '@unocss/reset/tailwind.css'
 import './utils/electron'
 import './main.css'
+import './main.scss'
 import 'uno.css'
 
 import { basePath, isElectron } from './env'

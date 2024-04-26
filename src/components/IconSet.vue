@@ -300,20 +300,20 @@ useEventListener(categoriesContainer, 'wheel', (e: WheelEvent) => {
 
       <template v-if="collection">
         <!-- Bag Fab -->
-        <FAB
+        <!--        <FAB
           v-if="bags.length"
           icon="carbon:shopping-bag"
           :number="bags.length"
           @click="showBag = true"
-        />
+        /> -->
 
         <!-- Bag -->
-        <Modal :value="showBag" direction="right" @close="showBag = false">
+        <!--        <Modal :value="showBag" direction="right" @close="showBag = false">
           <Bag
             @close="showBag = false"
             @select="onSelect"
           />
-        </Modal>
+        </Modal> -->
 
         <!-- Details -->
         <Modal :value="!!current" @close="current = ''">

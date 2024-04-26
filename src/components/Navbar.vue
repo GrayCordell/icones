@@ -51,13 +51,13 @@ export default defineComponent({
       >
         Icônes
       </h1>
-      <a
+      <!--      <a
         class="non-dragging"
         i-carbon-logo-github icon-button flex-none
         href="https://github.com/antfu/icones"
         target="_blank"
         title="GitHub"
-      />
+      /> -->
       <RouterLink
         class="non-dragging"
         i-carbon-settings icon-button flex-none

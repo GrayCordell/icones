@@ -7,6 +7,12 @@ const timeAgo = useTimeAgo(new Date(buildTime))
 <template>
   <footer class="text-center text-sm pt-8 pb-6">
     <p class="color-fade">
+      modified by
+      <a
+        class="opacity-75 hover:opacity-100"
+        href=""
+        target="_blank"
+      >Vanderbilt</a>,
       built by
       <a
         class="opacity-75 hover:opacity-100"

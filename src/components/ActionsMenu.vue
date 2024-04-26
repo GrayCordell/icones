@@ -4,7 +4,6 @@ import { activeMode, iconSize, inProgress, isFavoritedCollection, listType, prog
 import { cacheCollection, downloadAndInstall, isInstalled } from '../data'
 import type { CollectionMeta } from '../data'
 import { PackIconFont, PackJsonZip, PackSvgZip } from '../utils/pack'
-import { isElectron } from '../env'
 
 const props = defineProps({
   collection: {
@@ -182,12 +181,12 @@ const favorited = computed(() => isFavoritedCollection(props.collection.id))
     />
 
     <!-- Download State -->
-    <div
+    <!--    <div
       v-if="installed && !isElectron"
       icon-button class="!op50"
       i-carbon-cloud-auditing
       title="Cached in browser"
-    />
+    /> -->
 
     <!-- Menu -->
     <div icon-button cursor-pointer relative i-carbon-menu title="Menu">
@@ -206,21 +205,21 @@ const favorited = computed(() => isFavoritedCollection(props.collection.id))
             List
           </option>
         </optgroup>
-        <optgroup label="Modes">
+        <!--        <optgroup label="Modes">
           <option value="select">
             Multiple select
           </option>
           <option value="copy">
             Name copying mode
           </option>
-        </optgroup>
+        </optgroup> -->
 
         <!--
             TODO: due to this function requires to download and pack
                   the full set, we should make some UI to aware users
                   in browser version.
           -->
-        <optgroup v-if="collection.id !== 'all'" label="Downloads">
+        <!--        <optgroup v-if="collection.id !== 'all'" label="Downloads">
           <option v-if="!isElectron && !installed" value="cache">
             Cache in Browser
           </option>
@@ -233,7 +232,7 @@ const favorited = computed(() => isFavoritedCollection(props.collection.id))
           <option value="download_json" :disabled="inProgress">
             JSON
           </option>
-        </optgroup>
+        </optgroup> -->
       </select>
     </div>
     <!-- TODO: improve design of custom select -->

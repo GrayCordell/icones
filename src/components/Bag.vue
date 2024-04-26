@@ -1,3 +1,4 @@
+<!--
 <script setup lang='ts'>
 import { bags, clearBag } from '../store'
 import { PackIconFont, PackSVGSprite, PackZip } from '../utils/pack'
@@ -106,3 +107,4 @@ async function PackSvgs(type: PackType = 'svg') {
     </template>
   </div>
 </template>
+-->
