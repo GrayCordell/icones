@@ -1,21 +1,26 @@
 {
-  "name": "icones-components",
+  "name": "bb-icones-fork",
   "type": "module",
-  "main": "dist/my-vue-library.umd.js",
-  "module": "dist/my-vue-library.es.js",
+  "main": "./dist/bb-icones-fork.cjs",
+  "module": "./dist/bb-icones-fork.js",
+  "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/my-vue-library.es.js",
-      "require": "./dist/my-vue-library.umd.js"
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/bb-icones-fork.js"
+      },
+      "require": {
+        "types": "./dist/types/index.d.cts",
+        "default": "./dist/bb-icones-fork.cjs"
+      }
     },
-    "./dist/style.css": {
-      "import": "./dist/style.css",
-      "require": "./dist/style.css"
-    }
+    "./style.css": "./dist/style.css"
   },
   "files": [
     "dist",
-    "dist/style.css"
+    "dist/style.css",
+    "src"
   ],
   "version": "1.0.0",
   "private": true,

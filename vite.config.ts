@@ -1,20 +1,17 @@
 import { resolve } from 'node:path'
 import process from 'node:process'
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import dayjs from 'dayjs'
 import Vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
+import dts from 'vite-plugin-dts'
 
 export default defineConfig(({ mode }) => {
   const isElectron = mode === 'electron'
-  const isBuild = process.argv.slice(2).includes('build')
-
-  const env = loadEnv(mode, process.cwd())
-  // Determine if building the library
-  const buildLibrary = env.BUILD_LIBRARY === 'true'
+  // const isBuild = process.argv.slice(2).includes('build')
 
   /*
   if (isElectron)
@@ -98,12 +95,26 @@ export default defineConfig(({ mode }) => {
       UnoCSS({
         mode: 'vue-scoped',
       }),
+      dts({
+        outDir: 'dist/types',
+        include: 'src',
+        // rollupTypes: true,
+      }),
     ],
     build: {
       lib: {
-        entry: resolve(__dirname, './src/index.js'),
-        name: 'MyVueLibrary',
-        fileName: format => `my-vue-library.${format}.js`,
+        entry: resolve(__dirname, 'src/index.ts'),
+        // name: 'vue-components',
+        formats: [
+          'es',
+          // Temporary disabled for UnoCSS issues:
+          //   error during build:
+          //   Error: [unocss] does not found CSS placeholder in the generated chunks
+          'cjs',
+          // Not needed for now
+          // 'umd',
+        ],
+
       },
       rollupOptions: {
         external: ['vue', 'vue-router', '@vueuse/core'],
@@ -113,7 +124,14 @@ export default defineConfig(({ mode }) => {
             'vue-router': 'VueRouter',
             '@vueuse/core': 'VueUse',
           },
+          // Since we publish our ./src folder, there's no point
+          // in bloating sourcemaps with another copy of it.
+          sourcemapExcludeSources: true,
         },
+        sourcemap: true,
+        target: 'esnext',
+        // Leave minification up to applications.
+        minify: false,
       },
     },
     define: {

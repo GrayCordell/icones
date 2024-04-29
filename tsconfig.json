@@ -12,7 +12,7 @@
       "vite-plugin-pwa/client"
     ],
     "strict": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
