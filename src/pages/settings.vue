@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PresentType } from '../data'
 import { categories, collections } from '../data'
-import { isExcludedCategory, toggleExcludedCategory } from '../store'
+import { isDisabledCategory, isExcludedCategory, toggleExcludedCategory } from '../store'
 
 const categorizedCollections = computed(() => categories.map(category => ({
   name: category,
@@ -30,7 +30,10 @@ const categorizedCollections = computed(() => categories.map(category => ({
 
       <div of-y-auto w-full px4 pb4 class="masonry">
         <div v-for="c of categorizedCollections" :key="c.name" mb-10>
-          <div flex py1 px2 break-inside-avoid>
+          <div
+            v-if="!isDisabledCategory(c.name)"
+            flex py1 px2 break-inside-avoid
+          >
             <h1 font-bold op75 flex-auto>
               {{ c.name }}
             </h1>
@@ -42,7 +45,10 @@ const categorizedCollections = computed(() => categories.map(category => ({
             />
           </div>
 
-          <SettingsCollectionsList :collections="c.collections" />
+          <SettingsCollectionsList
+            v-if="!isDisabledCategory(c.name)"
+            :collections="c.collections"
+          />
         </div>
       </div>
     </div>

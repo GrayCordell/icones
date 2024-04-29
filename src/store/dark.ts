@@ -1,3 +1,1 @@
-export const isDark = useDark({
-  storageKey: 'icones-schema',
-})
+export const isDark = ref(false)

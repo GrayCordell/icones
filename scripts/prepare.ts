@@ -27,7 +27,7 @@ async function prepareJSON() {
 
   const collections = Object
     .entries(raw).map(([id, v]) => ({ ...(v as any), id }))
-    .filter(v => v.hidden !== true)
+    .filter(v => v.hidden !== true || (v.id))
 
   const collectionsMeta = []
 

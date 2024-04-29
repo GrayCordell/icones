@@ -120,9 +120,9 @@ watch(
   { flush: 'pre' },
 )
 
-const installed = computed(() => {
+/*const installed = computed(() => {
   return props.collection && isInstalled(props.collection.id)
-})
+})*/
 
 const favorited = computed(() => isFavoritedCollection(props.collection.id))
 
@@ -163,7 +163,9 @@ const favorited = computed(() => isFavoritedCollection(props.collection.id))
 
 <template>
   <div flex="~ gap3" text-xl items-center>
+    <!--
     <DarkSwitcher />
+-->
 
     <RouterLink
       icon-button

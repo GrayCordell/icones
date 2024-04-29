@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { getIconSnippet } from '../utils/icons'
 import { collections } from '../data'
-import { copyPreviewColor, getTransformedId, preferredCase, previewColor, pushRecentIcon, showCaseSelect } from '../store'
+import { confirmedIconChoiceForBettysBrain, copyPreviewColor, getTransformedId, preferredCase, previewColor, pushRecentIcon, showCaseSelect } from '../store'
 import { dataUrlToBlob } from '../utils/dataUrlToBlob'
 import { idCases } from '../utils/case'
 
@@ -109,6 +109,15 @@ const collection = computed(() => {
   const id = props.icon.split(':')[0]
   return collections.find(i => i.id === id)
 })
+
+async function confirmIconChoiceForBettysBrain() {
+  pushRecentIcon(props.icon)
+  const svg = await getIconSnippet(props.icon, 'url', true, color.value)
+  if (!svg)
+    return
+
+  confirmedIconChoiceForBettysBrain.value = svg
+}
 </script>
 
 <template>
@@ -131,7 +140,9 @@ const collection = computed(() => {
         <!--
         <IconButton icon="carbon:copy" class="ml-2" @click="copy('id')" />
 -->
+        <!--
         <IconButton icon="carbon:chevron-up" class="ml-2" @click="showCaseSelect = !showCaseSelect" />
+-->
         <div class="flex-auto" />
         <div
           v-if="showCaseSelect"
@@ -213,11 +224,11 @@ const collection = computed(() => {
             hover:bg-gray-50 dark:hover:bg-dark-200
           "
           :class="copyPreviewColor ? 'text-primary' : 'text-gray-500'"
-          @click="copyPreviewColor = !copyPreviewColor"
+          @click="confirmIconChoiceForBettysBrain()"
         >
-          <Icon v-if="!copyPreviewColor" class="inline-block text-lg align-middle" icon="carbon:checkbox" />
-          <Icon v-else class="inline-block text-lg align-middle" icon="carbon:checkbox-checked" />
-          <span class="inline-block align-middle ml1">copy with color</span>
+          <!--          <Icon v-if="!copyPreviewColor" class="inline-block text-lg align-middle" icon="carbon:checkbox" />
+          <Icon v-else class="inline-block text-lg align-middle" icon="carbon:checkbox-checked" /> -->
+          <span class="inline-block align-middle ml1">use icon</span>
         </button>
       </div>
 

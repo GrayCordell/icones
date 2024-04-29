@@ -27,7 +27,7 @@ const timeAgo = useTimeAgo(new Date(buildTime))
       >Iconify</a>
     </p>
     <div color-fade mt-1 op50 italic>
-      Last update: {{ buildTime }} ({{ timeAgo }})
+      A modified fork of Icones
     </div>
   </footer>
 </template>

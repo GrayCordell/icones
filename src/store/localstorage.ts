@@ -7,10 +7,12 @@ const RECENT_ICONS_CAPACITY = 100
 
 export type ActiveMode = 'normal' | 'select' | 'copy'
 
+export const confirmedIconChoiceForBettysBrain = useStorage<string>('icones-confirm-icon-choice-for-bettys-brain', '')
+
 export const themeColor = useStorage('icones-theme-color', 'var(--accent)')
 export const iconSize = useStorage('icones-icon-size', '2xl')
 export const previewColor = useStorage('icones-preview-color', '#888888')
-export const copyPreviewColor = useStorage('icones-copy-preview-color', false)
+export const copyPreviewColor = useStorage('icones-copy-preview-color', true)
 export const listType = useStorage('icones-list-type', 'grid')
 export const favoritedCollectionIds = useStorage<string[]>('icones-fav-collections', [])
 export const recentCollectionIds = useStorage<string[]>('icones-recent-collections', [])
@@ -24,6 +26,15 @@ export const excludedCollectionIds = useStorage<string[]>('icones-excluded-colle
 export const excludedCategories = useStorage<string[]>('icones-excluded-categories', [
   'Archive / Unmaintained',
 ])
+export const disabledCategories = ref<string[]>([
+  'Archive / Unmaintained',
+])
+export const disabledCollections = ref<string[]>([
+  'healthicons',
+  'health-icons',
+  'health-icon',
+  'healthicon',
+].map(v => v.toLowerCase()))
 
 export function getTransformedId(icon: string) {
   return idCases[preferredCase.value]?.(icon) || icon
@@ -34,11 +45,21 @@ export function isFavoritedCollection(id: string) {
 }
 
 export function isExcludedCollection(collection: CollectionInfo) {
-  return excludedCollectionIds.value.includes(collection.id) || excludedCategories.value.includes(collection.category || '')
+  return excludedCollectionIds.value.includes(collection.id)
+    || excludedCategories.value.includes(collection.category || '')
+    || disabledCollections.value.includes(collection.category || '')
+    || isDisabledCollection(collection.id)
 }
 
 export function isExcludedCategory(category: string | undefined) {
   return category && excludedCategories.value.includes(category)
+}
+export function isDisabledCategory(category: string | undefined) {
+  return category && disabledCategories.value.includes(category)
+}
+
+export function isDisabledCollection(id: string | undefined) {
+  return id?.toLowerCase() && disabledCollections.value.includes(id)
 }
 
 export function isRecentCollection(id: string) {

@@ -48,9 +48,9 @@ function toggleDark(event?: MouseEvent) {
 </script>
 
 <template>
-  <button
+<!--  <button
     icon-button
     dark:i-carbon-moon i-carbon:sun
     @click="toggleDark"
-  />
+  />-->
 </template>

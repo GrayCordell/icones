@@ -1,8 +1,9 @@
-body {
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+/*
+!*body {*!
+!*    padding: 0;*!
+!*    -webkit-font-smoothing: antialiased;*!
+!*    -moz-osx-font-smoothing: grayscale;*!
+!*}*!
 
 html.dark {
     background: #181818;
@@ -43,7 +44,7 @@ html.dark {
     overflow-x: overlay;
 }
 
-/* Scrollbar */
+!* Scrollbar *!
 * {
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -70,7 +71,7 @@ html.dark {
     border-radius: 3px;
 }
 
-/* Tootip */
+!* Tootip *!
 .tooltip {
     position: relative;
 }
@@ -98,7 +99,7 @@ html.dark {
     }
 }
 
-/* fallback black svg in dark mode */
+!* fallback black svg in dark mode *!
 .icons-item svg,
 .dark .icons-item [fill='#000'],
 .dark .icons-item [fill='#000000'],
@@ -112,7 +113,7 @@ html.dark {
     stroke: currentColor;
 }
 
-/* Color Mode transition */
+!* Color Mode transition *!
 ::view-transition-old(root),
 ::view-transition-new(root) {
     animation: none;
@@ -130,3 +131,4 @@ html.dark {
 .dark::view-transition-new(root) {
     z-index: 1;
 }
+*/

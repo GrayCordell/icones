@@ -1,24 +1,25 @@
 import { createApp } from 'vue'
-import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-import { disableCache } from 'iconify-icon'
+/* import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
+import { disableCache } from 'iconify-icon' */
+import { createMemoryHistory, createRouter } from 'vue-router'
 import App from './App.vue'
-import '@unocss/reset/tailwind.css'
+/* import '@unocss/reset/tailwind.css'
 import './utils/electron'
 import './main.css'
 import './main.scss'
-import 'uno.css'
+import 'uno.css' */
 
-import { basePath, isElectron } from './env'
+import { basePath } from './env'
 import routes from '~pages'
 
 const app = createApp(App)
 
 const router = createRouter({
-  history: isElectron ? createWebHashHistory(basePath) : createWebHistory(basePath),
+  history: createMemoryHistory(basePath),
   routes,
 })
 
-if (!isElectron && PWA) {
+/* if (!isElectron && PWA) {
   // disable local storage cache when there is PWA:
   // we need to keep local storage when running dev server without PWA
   // to avoid send requests to iconify server api
@@ -27,7 +28,7 @@ if (!isElectron && PWA) {
     const { registerSW } = await import('virtual:pwa-register')
     registerSW({ immediate: true })
   })
-}
+} */
 
 app.use(router)
 app.mount('#app')
