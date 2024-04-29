@@ -23,9 +23,9 @@
     "src"
   ],
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "packageManager": "pnpm@8.15.6",
-  "author": "TBD",
+  "author": "Grayson",
   "license": "MIT",
   "scripts": {
     "postinstall": "esno scripts/prepare.ts",
