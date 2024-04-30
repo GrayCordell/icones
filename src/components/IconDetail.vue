@@ -112,11 +112,14 @@ const collection = computed(() => {
 
 async function confirmIconChoiceForBettysBrain() {
   pushRecentIcon(props.icon)
-  const svg = await getIconSnippet(props.icon, 'url', true, color.value)
-  if (!svg)
-    return
+  // const svg = await getIconSnippet(props.icon, 'url', true, color.value)
+  // if (!svg)
+  // return
 
-  confirmedIconChoiceForBettysBrain.value = svg
+  confirmedIconChoiceForBettysBrain.value = {
+    icon: props.icon,
+    color: previewColor.value,
+  }
 }
 </script>
 

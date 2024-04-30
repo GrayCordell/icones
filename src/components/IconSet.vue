@@ -271,7 +271,7 @@ useEventListener(categoriesContainer, 'wheel', (e: WheelEvent) => {
             </div>
           </div>
         </div>
-        <div of-y-scroll of-x-hidden>
+        <div of-y-scroll of-x-hidden style="max-height:80% ">
           <!-- Icons -->
           <div class="px-5 pt-2 pb-4 text-center">
             <Icons

@@ -2,12 +2,14 @@
 import { pushRecentCollection, setCurrentCollection, useCurrentCollection } from '../../store'
 
 const props = defineProps<{
-  id: string
+  id?: string
 }>()
+const route = useRoute()
+const id = computed<string>(() => props?.id || route?.params?.id as string)
 
 watch(
   () => props.id,
-  () => setCurrentCollection(props.id),
+  () => setCurrentCollection(id.value),
   { immediate: true },
 )
 
@@ -16,7 +18,7 @@ onUnmounted(() => setCurrentCollection(''))
 const collection = useCurrentCollection()
 
 onMounted(() => {
-  pushRecentCollection(props.id)
+  pushRecentCollection(id.value)
 })
 </script>
 

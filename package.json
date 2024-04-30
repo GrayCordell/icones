@@ -15,22 +15,24 @@
         "default": "./dist/bb-icones-fork.cjs"
       }
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/style.css",
+    "./scripts/*": "./dist/scripts/*.ts"
   },
   "files": [
     "dist",
     "dist/style.css",
+    "dist/scripts",
+    "dist/scripts/postbuild.ts",
+    "dist/scripts/prebuild.ts",
+    "dist/scripts/prepare.ts",
     "src"
   ],
-  "version": "1.0.0",
+  "version": "1.25.0",
   "private": false,
   "packageManager": "pnpm@8.15.6",
   "author": "Grayson",
   "license": "MIT",
   "scripts": {
-    "postinstall": "esno scripts/prepare.ts",
-    "prebuild": "esno scripts/prebuild.ts",
-    "postbuild": "esno scripts/postbuild.ts",
     "lint": "eslint .",
     "dev": "vite --port 3333 --open",
     "preview": "vite build --mode preview",
@@ -78,6 +80,7 @@
     "vite-plugin-pages": "^0.32.1",
     "vite-plugin-purge-icons": "^0.10.0",
     "vite-plugin-pwa": "^0.19.8",
+    "vite-plugin-static-copy": "^1.0.3",
     "vue-tsc": "^2.0.11"
   },
   "pnpm": {

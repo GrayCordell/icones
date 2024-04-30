@@ -1,13 +1,17 @@
 import type { CollectionInfo } from '../data'
 import type { IdCase } from '../utils/case'
 import { idCases } from '../utils/case'
+import { useStorage } from '@vueuse/core'
 
 const RECENT_COLLECTION_CAPACITY = 10
 const RECENT_ICONS_CAPACITY = 100
 
 export type ActiveMode = 'normal' | 'select' | 'copy'
 
-export const confirmedIconChoiceForBettysBrain = useStorage<string>('icones-confirm-icon-choice-for-bettys-brain', '')
+export const confirmedIconChoiceForBettysBrain = useStorage<{
+  icon: string
+  color: string
+} | ''>('icones-confirm-icon-choice-for-bettys-brain', '')
 
 export const themeColor = useStorage('icones-theme-color', 'var(--accent)')
 export const iconSize = useStorage('icones-icon-size', '2xl')

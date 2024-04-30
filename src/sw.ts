@@ -2,6 +2,7 @@ import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from
 import { cacheNames, clientsClaim } from 'workbox-core'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 import { getIcons } from '@iconify/utils'
+import { basePath } from './env'
 
 declare let self: ServiceWorkerGlobalScope
 
@@ -71,7 +72,7 @@ const swManifestMap = new Map<string, string>(
 async function getCollection(request: Request, name: string, icons: string[]) {
   try {
     const cache = await caches.open(cacheNames.precache)
-    const collectionUrl = `/collections/${name}.json`
+    const collectionUrl = `${basePath}/collections/${name}.json`
     const url = swManifestMap.get(collectionUrl) ?? collectionUrl
     let cachedResponse = await cache.match(url)
     if (!cachedResponse) {

@@ -1,6 +1,6 @@
 import { resolve } from 'node:path'
 import process from 'node:process'
-import { defineConfig } from 'vite'
+import { defineConfig, normalizePath } from 'vite'
 import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -8,6 +8,9 @@ import dayjs from 'dayjs'
 import Vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
 import dts from 'vite-plugin-dts'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
+
+const BASE = '/bb/'
 
 export default defineConfig(({ mode }) => {
   const isElectron = mode === 'electron'
@@ -18,6 +21,7 @@ export default defineConfig(({ mode }) => {
     rmSync('dist-electron', { recursive: true, force: true }) */
 
   return {
+    base: BASE,
     plugins: [
       /*   isElectron && electron([
         {
@@ -99,6 +103,14 @@ export default defineConfig(({ mode }) => {
         outDir: 'dist/types',
         include: 'src',
         // rollupTypes: true,
+      }),
+      viteStaticCopy({
+        targets: [
+          {
+            src: normalizePath(resolve(__dirname, 'scripts')),
+            dest: normalizePath(resolve(__dirname, 'dist')),
+          },
+        ],
       }),
     ],
     build: {
