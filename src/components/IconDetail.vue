@@ -1,8 +1,7 @@
 <script setup lang='ts'>
-import { getIconSnippet } from '../utils/icons'
+// import { getIconSnippet } from '../utils/icons'
 import { collections } from '../data'
 import { confirmedIconChoiceForBettysBrain, copyPreviewColor, getTransformedId, preferredCase, previewColor, pushRecentIcon, showCaseSelect } from '../store'
-import { dataUrlToBlob } from '../utils/dataUrlToBlob'
 import { idCases } from '../utils/case'
 
 const props = defineProps({
@@ -20,7 +19,7 @@ const emit = defineEmits(['close', 'copy', 'next', 'prev'])
 
 const caseSelector = ref<HTMLDivElement>()
 const transformedId = computed(() => getTransformedId(props.icon))
-const color = computed(() => copyPreviewColor.value ? previewColor.value : 'currentColor')
+// const color = computed(() => copyPreviewColor.value ? previewColor.value : 'currentColor')
 
 onClickOutside(caseSelector, () => {
   showCaseSelect.value = false
@@ -40,7 +39,7 @@ onKeyStroke('ArrowRight', (e) => {
   e.preventDefault()
 })
 
-async function copyText(text?: string) {
+/* async function copyText(text?: string) {
   if (text) {
     try {
       await navigator.clipboard.writeText(text)
@@ -63,9 +62,9 @@ async function copyPng(dataUrl: string): Promise<boolean> {
     console.error('Failed to copy png error', e)
     return false
   }
-}
+} */
 
-async function copy(type: string) {
+/* async function copy(type: string) {
   pushRecentIcon(props.icon)
 
   const svg = await getIconSnippet(props.icon, type, true, color.value)
@@ -78,7 +77,7 @@ async function copy(type: string) {
       ? await copyPng(svg)
       : await copyText(svg),
   )
-}
+} */
 
 /* async function download(type: string) {
   pushRecentIcon(props.icon)

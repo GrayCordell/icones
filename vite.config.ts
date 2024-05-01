@@ -129,7 +129,7 @@ export default defineConfig(({ mode }) => {
 
       },
       rollupOptions: {
-        external: ['vue', 'vue-router', '@vueuse/core'],
+        external: ['vue', 'vue-router', '@vueuse/core', 'iconify-icon'],
         output: {
           globals: {
             'vue': 'Vue',

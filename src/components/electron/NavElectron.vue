@@ -1,4 +1,8 @@
 <template>
+  <div />
+</template>
+<!--
+<template>
   <div
     class="electron-nav dragging cursor-pointer flex-none flex justify-start items-center fixed top-0 left-0 z-50 border-base bg-base border-r border-b rounded-br opacity-0 hover:opacity-100 transition-all duration-300"
   >
@@ -24,3 +28,4 @@
   margin-top: -2px;
 }
 </style>
+-->

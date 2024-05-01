@@ -1,15 +1,16 @@
 <template>
-  <div class="p-6 w-120 help-page">
-    <!--    <p class="mb-2 opacity-75">
+  <span />
+<!--  <div class="p-6 w-120 help-page">
+    &lt;!&ndash;    <p class="mb-2 opacity-75">
       &lt;!&ndash;      How to use the icon? &ndash;&gt;
-    </p> -->
+    </p> &ndash;&gt;
 
-    <!--    <h2 class="bold text-lg mb-1">
+    &lt;!&ndash;    <h2 class="bold text-lg mb-1">
       Copy per Icon
-    </h2> -->
-    <!--    <p>
+    </h2> &ndash;&gt;
+    &lt;!&ndash;    <p>
       You can copy the icon as SVG to paste in almost any editor (Figma, Sketch, Illustrator, etc.), or copy as component to use in your web apps.
-    </p> -->
+    </p> &ndash;&gt;
 
     <h2 class="bold text-lg mt-5 mb-1">
       Iconify Runtime
@@ -39,14 +40,14 @@
     <p class="mt-2">
       Check out <a href="https://antfu.me/posts/journey-with-icons-continues" target="_blank">this blog post</a> for the story behind.
     </p>
-  </div>
+  </div> -->
 </template>
 
 <style lang="postcss">
-.help-page p {
+/*.help-page p {
   @apply text-black/60 dark:text-white/60;
 }
 .help-page a {
   @apply text-primary opacity-75 hover:opacity-100;
-}
+}*/
 </style>

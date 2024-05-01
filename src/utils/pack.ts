@@ -1,14 +1,9 @@
+/*
 import { isVSCode } from '../env'
 import { bufferToString } from './bufferToSring'
-import {
-  SvgToJSX,
-  SvgToTSX,
-  SvgToVue,
-  getSvg,
-  getSvgSymbol,
-  toComponentName,
-} from './icons'
+*/
 
+/*
 export async function LoadIconSvgs(icons: string[]) {
   return await Promise.all(
     icons
@@ -22,6 +17,8 @@ export async function LoadIconSvgs(icons: string[]) {
       }),
   )
 }
+*/
+/*
 
 export async function Download(blob: Blob, name: string) {
   if (isVSCode) {
@@ -42,7 +39,9 @@ export async function Download(blob: Blob, name: string) {
     a.remove()
   }
 }
+*/
 
+/*
 export async function PackSVGSprite(icons: string[], options: any = {}) {
   if (!icons.length)
     return
@@ -61,8 +60,9 @@ ${symbols}
   const blob = new Blob([svg], { type: 'image/svg+xml' })
   Download(blob, 'sprite.svg')
 }
+*/
 
-export async function PackIconFont(icons: string[], options: any = {}) {
+/* export async function PackIconFont(icons: string[], options: any = {}) {
   if (!icons.length)
     return
   const data = await LoadIconSvgs(icons)
@@ -74,9 +74,10 @@ export async function PackIconFont(icons: string[], options: any = {}) {
     icons: data,
   })
 
-  Download(result.zip.blob, result.zip.name)
-}
+  void Download(result.zip.blob, result.zip.name)
+} */
 
+/*
 export async function PackSvgZip(icons: string[], name: string) {
   if (!icons.length)
     return
@@ -89,7 +90,9 @@ export async function PackSvgZip(icons: string[], name: string) {
   const blob = await zip.generateAsync({ type: 'blob' })
   Download(blob, `${name}.zip`)
 }
+*/
 
+/*
 export async function PackJsonZip(icons: string[], name: string) {
   if (!icons.length)
     return
@@ -101,13 +104,17 @@ export async function PackJsonZip(icons: string[], name: string) {
   const blob = await zip.generateAsync({ type: 'blob' })
   Download(blob, `${name}.zip`)
 }
+*/
 
 export type PackType = 'svg' | 'tsx' | 'jsx' | 'vue' | 'json'
 
+/*
 function normalizeZipFleName(svgName: string): string {
   return svgName.replace(':', '-')
 }
+*/
 
+/*
 export async function PackZip(
   icons: string[],
   name: string,
@@ -151,3 +158,4 @@ export async function PackZip(
   const blob = await zip.generateAsync({ type: 'blob' })
   Download(blob, `${name}-${type}.zip`)
 }
+*/

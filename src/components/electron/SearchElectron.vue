@@ -1,4 +1,11 @@
 <script setup lang="ts">
+</script>
+
+<template>
+  <div />
+</template>
+<!--
+<script setup lang="ts">
 import { getSearchResults } from '../../store'
 import { isElectron } from '../../env'
 import { isSearchOpen } from '../../data'
@@ -34,3 +41,4 @@ watch(isSearchOpen, (v) => {
     </div>
   </Notification>
 </template>
+-->

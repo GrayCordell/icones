@@ -19,8 +19,19 @@ function humanFileSize(size: number) {
 }
 
 async function prepareJSON() {
-  const dir = path.resolve(__dirname, '../node_modules/@iconify/json')
-  const collectionsDir = path.resolve(__dirname, '../public/collections')
+  const isNodeModules = __dirname.includes('node_modules')
+
+  let dir: string | undefined
+  if (isNodeModules)
+    dir = path.resolve(__dirname, '../../node_modules/@iconify/json')
+  else
+    dir = path.resolve(__dirname, '../node_modules/@iconify/json')
+
+  let collectionsDir: string | undefined
+  if (isNodeModules)
+    collectionsDir = path.resolve(__dirname, '../../public/collections')
+  else
+    collectionsDir = path.resolve(__dirname, '../public/collections')
 
   const raw = await fs.readJSON(path.join(dir, 'collections.json'))
   await fs.ensureDir(collectionsDir)

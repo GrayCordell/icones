@@ -1,9 +1,4 @@
 import { buildIcon, loadIcon } from 'iconify-icon'
-import { getTransformedId } from '../store'
-import Base64 from './base64'
-import { HtmlToJSX } from './htmlToJsx'
-import { prettierCode } from './prettier'
-import { svgToPngDataUrl } from './svgToPng'
 
 const API_ENTRY = 'https://api.iconify.design'
 
@@ -11,18 +6,7 @@ export async function getSvgLocal(icon: string, size = '1em', color = 'currentCo
   const data = await loadIcon(icon)
   if (!data)
     return
-  const built = buildIcon(data, { height: size })
-  if (!built)
-    return
-  const xlink = built.body.includes('xlink:') ? ' xmlns:xlink="http://www.w3.org/1999/xlink"' : ''
-  return `<svg xmlns="http://www.w3.org/2000/svg"${xlink} ${Object.entries(built.attributes).map(([k, v]) => `${k}="${v}"`).join(' ')}>${built.body}</svg>`.replaceAll('currentColor', color)
-}
-
-export async function getSvg(icon: string, size = '1em', color = 'currentColor') {
-  return await getSvgLocal(icon, size, color)
-    || await fetch(`${API_ENTRY}/${icon}.svg?inline=false&height=${size}&color=${encodeURIComponent(color)}`).then(r => r.text()) || ''
-}
-
+  const/*
 export async function getSvgSymbol(icon: string, size = '1em', color = 'currentColor') {
   const svgMarkup = await getSvg(icon, size, color)
 
@@ -37,12 +21,24 @@ export async function getSvgSymbol(icon: string, size = '1em', color = 'currentC
 
   return symbolElem?.outerHTML
 }
-
-export function toComponentName(icon: string) {
-  return icon.split(/:|-|_/).filter(Boolean).map(s => s[0].toUpperCase() + s.slice(1).toLowerCase()).join('')
+*/
+    built = buildIcon(data, { height: size })
+  if (!built)
+    return
+  const xlink = built.body.includes('xlink:') ? ' xmlns:xlink="http://www.w3.org/1999/xlink"' : ''
+  return `<svg xmlns="http://www.w3.org/2000/svg"${xlink} ${Object.entries(built.attributes).map(([k, v]) => `${k}="${v}"`).join(' ')}>${built.body}</svg>`.replaceAll('currentColor', color)
 }
 
-export function ClearSvg(svgCode: string, reactJSX?: boolean) {
+export async function getSvg(icon: string, size = '1em', color = 'currentColor') {
+  return await getSvgLocal(icon, size, color)
+    || await fetch(`${API_ENTRY}/${icon}.svg?inline=false&height=${size}&color=${encodeURIComponent(color)}`).then(r => r.text()) || ''
+}
+
+/* export function toComponentName(icon: string) {
+  return icon.split(/:|-|_/).filter(Boolean).map(s => s[0].toUpperCase() + s.slice(1).toLowerCase()).join('')
+} */
+
+/* export function ClearSvg(svgCode: string, reactJSX?: boolean) {
   const el = document.createElement('div')
   el.innerHTML = svgCode
   const svg = el.getElementsByTagName('svg')[0]
@@ -53,8 +49,8 @@ export function ClearSvg(svgCode: string, reactJSX?: boolean) {
     svg.removeAttributeNode(key)
   }
   return HtmlToJSX(el.innerHTML, reactJSX)
-}
-
+} */
+/*
 export function SvgToJSX(svg: string, name: string, snippet: boolean) {
   const code = `
 export function ${name}(props) {
@@ -126,13 +122,14 @@ export function SvgToSvelte(svg: string) {
 export function SvgToAstro(svg: string) {
   return `
 ---
-const props = Astro.props 
+const props = Astro.props
 ---
 
 ${svg.replace(/<svg (.*?)>/, '<svg $1 {...props}>')}
 `
-}
+} */
 
+/*
 export function SvgToReactNative(svg: string, name: string, snippet: boolean) {
   function replaceTags(svg: string, replacements: {
     from: string
@@ -210,7 +207,9 @@ export function ${name}(props) {
 
   return prettierCode(code, 'babel-ts')
 }
+*/
 
+/*
 export async function getIconSnippet(icon: string, type: string, snippet = true, color = 'currentColor'): Promise<string | undefined> {
   if (!icon)
     return
@@ -260,7 +259,8 @@ export async function getIconSnippet(icon: string, type: string, snippet = true,
       return `import ${toComponentName(icon)} from '~icons/${icon.split(':')[0]}/${icon.split(':')[1]}'`
   }
 }
+*/
 
-export function getIconDownloadLink(icon: string) {
+/* export function getIconDownloadLink(icon: string) {
   return `${API_ENTRY}/${icon}.svg?download=true&inline=false&height=auto`
-}
+} */

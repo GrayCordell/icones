@@ -1,9 +1,9 @@
 <script setup lang='ts'>
 import type { PropType } from 'vue'
-import { activeMode, iconSize, inProgress, isFavoritedCollection, listType, progressMessage, toggleFavoriteCollection } from '../store'
-import { cacheCollection, downloadAndInstall, isInstalled } from '../data'
+import { iconSize, isFavoritedCollection, listType, toggleFavoriteCollection } from '../store'
+import { cacheCollection } from '../data'
 import type { CollectionMeta } from '../data'
-import { PackIconFont, PackJsonZip, PackSvgZip } from '../utils/pack'
+// import { PackIconFont, PackJsonZip, PackSvgZip } from '../utils/pack'
 
 const props = defineProps({
   collection: {
@@ -20,8 +20,9 @@ const menu = ref(
       : 'small',
 )
 
+/*
 async function packIconFont() {
-  if (!props.collection)
+  /!* if (!props.collection)
     return
 
   progressMessage.value = 'Downloading...'
@@ -68,8 +69,9 @@ async function packJson() {
     props.collection.icons.map(i => `${props.collection!.id}:${i}`),
     props.collection.id,
   )
-  inProgress.value = false
+  inProgress.value = false *!/
 }
+*/
 
 async function cache() {
   if (!props.collection)
@@ -94,13 +96,13 @@ watch(
         iconSize.value = 'text-3xl'
         listType.value = 'list'
         return
-      case 'select':
+        /*   case 'select':
         activeMode.value = 'select'
         break
       case 'copy':
         activeMode.value = 'copy'
-        break
-      case 'download_iconfont':
+        break */
+        /*      case 'download_iconfont':
         packIconFont()
         break
       case 'download_svgs':
@@ -108,7 +110,7 @@ watch(
         break
       case 'download_json':
         packJson()
-        break
+        break */
       case 'cache':
         cache()
         break
@@ -120,9 +122,9 @@ watch(
   { flush: 'pre' },
 )
 
-/*const installed = computed(() => {
+/* const installed = computed(() => {
   return props.collection && isInstalled(props.collection.id)
-})*/
+}) */
 
 const favorited = computed(() => isFavoritedCollection(props.collection.id))
 

@@ -1,15 +1,15 @@
 <!-- eslint-disable no-console -->
 <script setup lang='ts'>
-import { activeMode, bags, drawerCollapsed, getSearchResults, iconSize, isCurrentCollectionLoading, listType, showHelp, toggleBag } from '../store'
+import { activeMode, bags, drawerCollapsed, getSearchResults, iconSize, isCurrentCollectionLoading, listType, toggleBag } from '../store'
 import { isLocalMode } from '../env'
 import { cacheCollection, specialTabs } from '../data'
-import { getIconSnippet } from '../utils/icons'
+// import { getIconSnippet } from '../utils/icons'
 import { cleanupQuery } from '../utils/query'
 
 const route = useRoute()
 const router = useRouter()
 
-const showBag = ref(false)
+// const showBag = ref(false)
 const copied = ref(false)
 const current = computed({
   get() {
@@ -52,7 +52,7 @@ function toggleVariant(v: string) {
     variant.value = v
 }
 
-async function copyText(text?: string) {
+/* async function copyText(text?: string) {
   if (text) {
     try {
       await navigator.clipboard.writeText(text)
@@ -62,16 +62,16 @@ async function copyText(text?: string) {
     }
   }
   return false
-}
+} */
 
 async function onSelect(icon: string) {
   switch (activeMode.value) {
     case 'select':
       toggleBag(icon)
       break
-    case 'copy':
+      /*   case 'copy':
       onCopy(await copyText(await getIconSnippet(icon, 'id', true) || icon))
-      break
+      break */
     default:
       current.value = icon
       break
@@ -157,6 +157,7 @@ useEventListener(categoriesContainer, 'wheel', (e: WheelEvent) => {
       <button
         fixed top="50%" flex="~ items-end justify-center" w-5 h-8
         icon-button transition-all duration-300
+        class="sidebar-button"
         border="t r b base rounded-r-full" z-100
         title="Toggle Sidebar"
         :style="{ left: drawerCollapsed ? '0px' : '250px' }"
@@ -230,7 +231,7 @@ useEventListener(categoriesContainer, 'wheel', (e: WheelEvent) => {
           </div>
 
           <!-- Categories -->
-          <div v-if="collection.categories" ref="categoriesContainer" class="mx-8 flex flex-wrap gap-2 select-none">
+          <div v-if="collection.categories" ref="categoriesContainer" class="mx-8 flex flex-wrap gap-2 select-none bb-scaled-gap-class">
             <div
               v-for="c of Object.keys(collection.categories).sort()"
               :key="c"
@@ -271,7 +272,7 @@ useEventListener(categoriesContainer, 'wheel', (e: WheelEvent) => {
             </div>
           </div>
         </div>
-        <div of-y-scroll of-x-hidden style="max-height:80% ">
+        <div of-y-scroll of-x-hidden style="max-height:55vh ">
           <!-- Icons -->
           <div class="px-5 pt-2 pb-4 text-center">
             <Icons
@@ -327,9 +328,9 @@ useEventListener(categoriesContainer, 'wheel', (e: WheelEvent) => {
         </Modal>
 
         <!-- Help -->
-        <ModalDialog :value="showHelp" @close="showHelp = false">
+        <!--        <ModalDialog :value="showHelp" @close="showHelp = false">
           <HelpPage />
-        </ModalDialog>
+        </ModalDialog> -->
 
         <!-- Mode -->
         <div
@@ -341,7 +342,9 @@ useEventListener(categoriesContainer, 'wheel', (e: WheelEvent) => {
           <Icon icon="carbon:close" class="inline-block text-xl align-text-bottom" />
         </div>
 
+        <!--
         <SearchElectron />
+-->
 
         <Notification :value="copied">
           <Icon icon="mdi:check" class="inline-block mr-2 font-xl align-middle" />
@@ -351,3 +354,14 @@ useEventListener(categoriesContainer, 'wheel', (e: WheelEvent) => {
     </div>
   </WithNavbar>
 </template>
+
+<style>
+.bb-scaled-gap-class {
+  @media (min-width: 640px) {
+    gap: 1px !important;
+  }
+  @media (min-width: 900px) {
+    gap: 2px !important;
+  }
+}
+</style>

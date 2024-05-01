@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const buildTime = __BUILD_TIME__
+// const buildTime = __BUILD_TIME__
 
-const timeAgo = useTimeAgo(new Date(buildTime))
+// const timeAgo = useTimeAgo(new Date(buildTime))
 </script>
 
 <template>
