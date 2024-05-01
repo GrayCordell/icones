@@ -27,7 +27,7 @@
     "dist/scripts/prepare.ts",
     "src"
   ],
-  "version": "1.26.0",
+  "version": "1.27.0",
   "private": false,
   "packageManager": "pnpm@8.15.6",
   "author": "Grayson",
